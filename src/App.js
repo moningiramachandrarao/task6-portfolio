@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'; 
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import rcImage from "./rc.jpeg"; 
+import rcImage from "./rc.jpeg";
 
 function App() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -20,16 +20,21 @@ function App() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const handleResize = () => {
+      handleScroll(); 
+    };
 
-    handleScroll(); 
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
-  
   const handleLinkClick = (e, target) => {
     e.preventDefault();
     const targetElement = document.querySelector(target);

@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import rcImage from "./rc.jpeg";
-function App() {
+function Rc() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [showTopButton, setShowTopButton] = useState(false);
-
-  // Toggle the menu
   const handleMenuClick = () => {
     setMenuOpen(!isMenuOpen);
   };
-
-  // Handle scroll and load events
   useEffect(() => {
     const handleScroll = () => {
-      setMenuOpen(false); // Close the menu on scroll
+      setMenuOpen(false);
       if (window.scrollY > 0) {
         setShowTopButton(true);
       } else {
@@ -23,14 +19,13 @@ function App() {
 
     window.addEventListener('scroll', handleScroll);
 
-    handleScroll(); // Call it on the initial render
+    handleScroll(); 
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  // Smooth scrolling
   const handleLinkClick = (e, target) => {
     e.preventDefault();
     const targetElement = document.querySelector(target);
@@ -46,7 +41,7 @@ function App() {
     <div className="App">
       <header className={`user ${isMenuOpen ? 'toggle' : ''}`}>
         <div className="user">
-          <img src={rcImage} alt="Ramachandra Rao" /> {/* Replace with image URL */}
+          <img src={rcImage} alt="Ramachandra Rao" /> 
           <h3 className="name">Ramachandra Rao</h3>
         </div>
         <nav className="navbar">
@@ -65,16 +60,13 @@ function App() {
         <h3>HAI FRIENDS !</h3>
         <h1>I'M <span>Ramachandra Rao</span></h1>
       </section>
-
-      {/* Rest of your code... */}
-
       {showTopButton && (
         <a href="#home" className="top" onClick={(e) => handleLinkClick(e, '#home')}>
-          <img src="images/scroll-top-img.png" alt="" /> {/* Replace with image URL */}
+          <img src="images/scroll-top-img.png" alt="" /> 
         </a>
       )}
     </div>
   );
 }
 
-export default App;
+export default Rc;
